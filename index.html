@@ -8,6 +8,19 @@
 </head>
 <body>
     <div class="container">
+        <div class="card" id="counterContainer" style="display: none;">
+            <p class="user-name">Olá, <span id="userName"></span></p>
+            <div class="count-display">
+                <span id="showerCount">0</span> banhos
+            </div>
+            <button onclick="incrementShower()">
+                <svg class="shower-icon" viewBox="0 0 24 24">
+                    <path d="M19,17V11H5V17H19M19,21H5V19H19V21M12,2.05V8H5V6.86L12,2.05M19,8H14.5V2.05L19,6.86V8Z"/>
+                </svg>
+                +1 Banho
+            </button>
+        </div>
+        
         <div class="card" id="rankingContainer">
             <h2 class="section-title">Ranking de Banhos 🚿</h2>
             <table class="ranking-table">
@@ -29,18 +42,6 @@
             <button onclick="login()">Entrar</button>
         </div>
 
-        <div class="card" id="counterContainer" style="display: none;">
-            <p class="user-name">Olá, <span id="userName"></span></p>
-            <div class="count-display">
-                <span id="showerCount">0</span> banhos
-            </div>
-            <button onclick="incrementShower()">
-                <svg class="shower-icon" viewBox="0 0 24 24">
-                    <path d="M19,17V11H5V17H19M19,21H5V19H19V21M12,2.05V8H5V6.86L12,2.05M19,8H14.5V2.05L19,6.86V8Z"/>
-                </svg>
-                +1 Banho
-            </button>
-        </div>
     </div>
 
     <script>
