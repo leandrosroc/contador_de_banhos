@@ -1,120 +1,128 @@
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: #f0f2f5;
-            padding: 2rem;
-        }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #f0f2f5;
+    padding: 2rem;
+}
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
 
-        .ranking-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
 
-        .ranking-table th,
-        .ranking-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
+.ranking-table th,
+.ranking-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
 
-        .ranking-table th {
-            font-weight: bold;
-            color: #666;
-        }
+.ranking-table th {
+    font-weight: bold;
+    color: #666;
+}
 
-        .ranking-table tr:last-child td {
-            border-bottom: none;
-        }
+.ranking-table tr:last-child td {
+    border-bottom: none;
+}
 
-        .medal {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            line-height: 24px;
-            text-align: center;
-            border-radius: 50%;
-            margin-right: 0.5rem;
-        }
+.medal {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
 
-        .medal-1 { background: #FFD700; }
-        .medal-2 { background: #C0C0C0; }
-        .medal-3 { background: #CD7F32; }
+.medal-1 {
+    background: #FFD700;
+}
 
-        input {
-            padding: 0.8rem;
-            margin: 1rem 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 100%;
-            font-size: 1rem;
-        }
+.medal-2 {
+    background: #C0C0C0;
+}
 
-        button {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 1rem auto;
-            transition: background 0.3s;
-        }
+.medal-3 {
+    background: #CD7F32;
+}
 
-        button:hover {
-            background: #45a049;
-        }
+input {
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+}
 
-        .count-display {
-            font-size: 2rem;
-            margin: 1rem 0;
-            color: #333;
-            text-align: center;
-        }
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem auto;
+    transition: background 0.3s;
+}
 
-        .user-name {
-            color: #666;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
+button:hover {
+    background: #45a049;
+}
 
-        .shower-icon {
-            width: 24px;
-            height: 24px;
-            fill: white;
-        }
+.count-display {
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: #333;
+    text-align: center;
+}
 
-        .section-title {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
+.user-name {
+    color: #666;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.shower-icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
