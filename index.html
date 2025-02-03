@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Banhos</title>
+    <link  rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="rankingContainer">
+            <h2 class="section-title">Ranking de Banhos 🚿</h2>
+            <table class="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>Nome</th>
+                        <th>Banhos</th>
+                    </tr>
+                </thead>
+                <tbody id="rankingBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card" id="loginContainer">
+            <h2 class="section-title">Entrar</h2>
+            <input type="text" id="nameInput" placeholder="Digite seu nome" required>
+            <button onclick="login()">Entrar</button>
+        </div>
+
+        <div class="card" id="counterContainer" style="display: none;">
+            <p class="user-name">Olá, <span id="userName"></span></p>
+            <div class="count-display">
+                <span id="showerCount">0</span> banhos
+            </div>
+            <button onclick="incrementShower()">
+                <svg class="shower-icon" viewBox="0 0 24 24">
+                    <path d="M19,17V11H5V17H19M19,21H5V19H19V21M12,2.05V8H5V6.86L12,2.05M19,8H14.5V2.05L19,6.86V8Z"/>
+                </svg>
+                +1 Banho
+            </button>
+        </div>
+    </div>
+
+    <script>
+
+        function loadRanking() {
+            fetch('ranking.php')
+            .then(response => response.json())
+            .then(data => {
+                const rankingBody = document.getElementById('rankingBody');
+                rankingBody.innerHTML = '';
+                
+                data.forEach((user, index) => {
+                    const row = document.createElement('tr');
+                    const position = index + 1;
+                    let medal = '';
+                    
+                    if (position === 1) medal = '<span class="medal medal-1">🥇</span>';
+                    else if (position === 2) medal = '<span class="medal medal-2">🥈</span>';
+                    else if (position === 3) medal = '<span class="medal medal-3">🥉</span>';
+                    
+                    row.innerHTML = `
+                        <td>${medal}${position}º</td>
+                        <td>${user.name}</td>
+                        <td>${user.count}</td>
+                    `;
+                    rankingBody.appendChild(row);
+                });
+            });
+        }
+
+        function login() {
+            const name = document.getElementById('nameInput').value;
+            if (!name) return;
+
+            fetch('login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `name=${encodeURIComponent(name)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('counterContainer').style.display = 'block';
+                document.getElementById('userName').textContent = name;
+                document.getElementById('showerCount').textContent = data.count;
+                loadRanking();
+            });
+        }
+
+        function incrementShower() {
+            const name = document.getElementById('userName').textContent;
+            
+            fetch('increment.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `name=${encodeURIComponent(name)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('showerCount').textContent = data.count;
+                loadRanking();
+            });
+        }
+
+        loadRanking();
+    </script>
+</body>
+</html>
