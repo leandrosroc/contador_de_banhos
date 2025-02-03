@@ -44,7 +44,27 @@
     </div>
 
     <script>
-
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedUserName = localStorage.getItem('userName');
+            if (savedUserName) {
+                fetch('login.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `name=${encodeURIComponent(savedUserName)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('loginContainer').style.display = 'none';
+                    document.getElementById('counterContainer').style.display = 'block';
+                    document.getElementById('userName').textContent = savedUserName;
+                    document.getElementById('showerCount').textContent = data.count;
+                    loadRanking();
+                });
+            }
+        });
+        
         function loadRanking() {
             fetch('ranking.php')
             .then(response => response.json())
@@ -84,6 +104,8 @@
             })
             .then(response => response.json())
             .then(data => {
+                localStorage.setItem('userName', name);
+                
                 document.getElementById('loginContainer').style.display = 'none';
                 document.getElementById('counterContainer').style.display = 'block';
                 document.getElementById('userName').textContent = name;
