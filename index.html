@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de Banhos</title>
-    <link  rel="stylesheet" type="text/css" href="styles.css">
+    <link  rel="stylesheet" type="text/css" href="styles.css?1=1.0.0">
 </head>
 <body>
     <div class="container">
@@ -19,6 +19,12 @@
                 </svg>
                 +1 Banho
             </button>
+        </div>
+        
+        <div class="card">
+          <div class="marquee-container">
+            <div class="marquee-content"></div>
+          </div>
         </div>
         
         <div class="card" id="rankingContainer">
@@ -44,95 +50,7 @@
 
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedUserName = localStorage.getItem('userName');
-            if (savedUserName) {
-                fetch('login.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `name=${encodeURIComponent(savedUserName)}`
-                })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('loginContainer').style.display = 'none';
-                    document.getElementById('counterContainer').style.display = 'block';
-                    document.getElementById('userName').textContent = savedUserName;
-                    document.getElementById('showerCount').textContent = data.count;
-                    loadRanking();
-                });
-            }
-        });
-        
-        function loadRanking() {
-            fetch('ranking.php')
-            .then(response => response.json())
-            .then(data => {
-                const rankingBody = document.getElementById('rankingBody');
-                rankingBody.innerHTML = '';
-                
-                data.forEach((user, index) => {
-                    const row = document.createElement('tr');
-                    const position = index + 1;
-                    let medal = '';
-                    
-                    if (position === 1) medal = '<span class="medal medal-1">🥇</span>';
-                    else if (position === 2) medal = '<span class="medal medal-2">🥈</span>';
-                    else if (position === 3) medal = '<span class="medal medal-3">🥉</span>';
-                    
-                    row.innerHTML = `
-                        <td>${medal}${position}º</td>
-                        <td>${user.name}</td>
-                        <td>${user.count}</td>
-                    `;
-                    rankingBody.appendChild(row);
-                });
-            });
-        }
+<script src="scripts.js?1=1.0.0"></script>
 
-        function login() {
-            const name = document.getElementById('nameInput').value;
-            if (!name) return;
-
-            fetch('login.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `name=${encodeURIComponent(name)}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem('userName', name);
-                
-                document.getElementById('loginContainer').style.display = 'none';
-                document.getElementById('counterContainer').style.display = 'block';
-                document.getElementById('userName').textContent = name;
-                document.getElementById('showerCount').textContent = data.count;
-                loadRanking();
-            });
-        }
-
-        function incrementShower() {
-            const name = document.getElementById('userName').textContent;
-            
-            fetch('increment.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `name=${encodeURIComponent(name)}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('showerCount').textContent = data.count;
-                loadRanking();
-            });
-        }
-
-        loadRanking();
-    </script>
 </body>
 </html>
